@@ -26,3 +26,9 @@ alias mem_rss='ps -eo rss | awk '"'"'{s+=$1} END {print s*1024}'"'"' | mem2str'
 # On linux set this to mem_vsize, on mac mem_rss
 alias mem_used='mem_vsize'
 #alias mem_used='mem_rss'
+
+# Add bash completion for git commands
+# Needs curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
