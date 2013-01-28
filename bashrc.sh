@@ -14,7 +14,7 @@ alias mem2str='perl -w -e '"'"'my $x = $ARGV[0];
 if(!defined($x) && !defined($x = <>)) { die("Cannot read in");}
 chomp($x);
 if($x !~ /^\d*\.?\d*(e[+-]\d*)?$/) { die("Not a number");}
-my @t = qw(B Kb Mb Gb Tb Pb);
+my @t = qw(B kB MB GB TB PB);
 my $i=0;
 for($i=0; $x>=1024; $i++) { $x /= 1024;}
 printf(($i==0?$x:"%.2f")." $t[$i]\n",$x);'"'"
