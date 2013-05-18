@@ -3,6 +3,10 @@
 # Includes all 'alias' and 'function' definitions
 #
 
+# To use aliases in scripts, you need to add:
+# shopt -s expand_aliases
+# source ~/.bashrc
+
 # Aliases to common ssh
 alias myserver='ssh turner@myserver.com'
 
