@@ -27,6 +27,9 @@ alias mem_rss='ps -eo rss | awk '"'"'{s+=$1} END {print s*1024}'"'"' | mem2str'
 alias mem_used='mem_vsize'
 #alias mem_used='mem_rss'
 
+# Filter VCF files
+alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
+
 # Add bash completion for git commands
 # Needs curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 if [ -f ~/.git-completion.bash ]; then
