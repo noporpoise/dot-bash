@@ -35,6 +35,7 @@ alias mem_used='mem_vsize'
 alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
 alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
+alias vcf-entries="grep -v '^#'"
 
 # Add bash completion for git commands
 # Needs curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
