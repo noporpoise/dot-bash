@@ -37,6 +37,14 @@ alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias vcf-entries="grep -v '^#'"
 
+# Get lexically lower dna sequence
+# requires revcmp from https://github.com/noporpoise/seq_file/
+function kmerkey {
+  FW=$1
+  RV=`echo $FW | revcmp`
+  if [[ "$FW" < "$RV" ]]; then echo "$FW"; else echo "$RV"; fi
+}
+
 # Add bash completion for git commands
 # Needs curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 if [ -f ~/.git-completion.bash ]; then
