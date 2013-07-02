@@ -32,10 +32,15 @@ alias mem_used='mem_vsize'
 #alias mem_used='mem_rss'
 
 # Filter VCF files
-alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
-alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias vcf-entries="grep -v '^#'"
+alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
+alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
+
+# Filter SAM files
+alias sam-header="awk '{ if (\$1 ~ /^@/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
+alias sam-entries="grep -v '^@'"
+alias sam-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^@/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 
 # Get lexically lower dna sequence
 # requires revcmp from https://github.com/noporpoise/seq_file/
