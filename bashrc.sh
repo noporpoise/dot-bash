@@ -43,7 +43,7 @@ alias sam-entries="grep -v '^@'"
 alias sam-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^@/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 
 // AWK with tab as the separator character
-alias tawk='awk -F"\t" -v OFS="\t"'
+alias tawk='awk -F\\t -v OFS=\\t'
 
 # Get lexically lower dna sequence
 # requires revcmp from https://github.com/noporpoise/seq_file/
