@@ -52,11 +52,10 @@ alias tawk='awk -F\\t -v OFS=\\t'
 # Get reverse complement
 alias revcmp='perl -s -w -e '"'"'
 my %dna;
-@dna{qw(a c g t n A C G T N),"\n"} = (qw(t g c a n T G C A N),"");
+@dna{qw(a c g t n A C G T N),"\n"} = (qw(t g c a n T G C A N),"\n");
 sub revcmp {
-  if($_[0] !~ /^>/) {
-    print join("", map {$dna{$_}} split("",reverse($_[0])))."\n";
-  }
+  chomp($_[0]);
+  print "".($_[0] =~ /^>/ ? $_[0] : join("", map {$dna{$_}} split("",reverse($_[0]))))."\n";
 }
 if(@ARGV == 0) { push(@ARGV,"-"); }
 for $str (@ARGV) { $str eq "-" ? map {revcmp($_)} <STDIN> : revcmp($str); }'"'"
