@@ -42,11 +42,26 @@ alias sam-header="awk '{ if (\$1 ~ /^@/ || \$1 ~ /^\s*$/) { print \$0; } else { 
 alias sam-entries="grep -v '^@'"
 alias sam-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^@/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 
-// AWK with tab as the separator character
+# Functions on bam files
+function bam-sample { samtools view -H $1 | grep -o -m 1 'SM:\w*' | sed 's/^SM://g'; }
+
+# AWK with tab as the separator character
 alias tawk='awk -F\\t -v OFS=\\t'
 
+# DNA functions
+# Get reverse complement
+alias revcmp='perl -s -w -e '"'"'
+my %dna;
+@dna{qw(a c g t n A C G T N),"\n"} = (qw(t g c a n T G C A N),"");
+sub revcmp {
+  if($_[0] !~ /^>/) {
+    print join("", map {$dna{$_}} split("",reverse($_[0])))."\n";
+  }
+}
+if(@ARGV == 0) { push(@ARGV,"-"); }
+for $str (@ARGV) { $str eq "-" ? map {revcmp($_)} <STDIN> : revcmp($str); }'"'"
+
 # Get lexically lower dna sequence
-# requires revcmp from https://github.com/noporpoise/seq_file/
 function kmerkey {
   FW=$1
   RV=`echo $FW | revcmp`
