@@ -31,6 +31,9 @@ alias mem_rss='ps -eo rss | awk '"'"'{s+=$1} END {print s*1024}'"'"' | mem2str'
 alias mem_used='mem_vsize'
 #alias mem_used='mem_rss'
 
+# Histogram data
+alias hist-data="awk '{n[\$1]++} END {for (i in n) print i,n[i]}' | sort -n"
+
 # Filter VCF files
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias vcf-entries="grep -v '^#'"
