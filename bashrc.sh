@@ -38,6 +38,7 @@ alias hist-data="awk '{n[\$1]++} END {for (i in n) print i,n[i]}' | sort -n"
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias vcf-entries="grep -v '^#'"
 alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
+alias vcf-fail="awk '\$1 ~ /^#/ || \$7 != "'"PASS"'"'"
 alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
 
 # Filter SAM files
