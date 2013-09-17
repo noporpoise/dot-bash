@@ -34,14 +34,15 @@ alias mem_used='mem_vsize'
 # Histogram data
 alias hist-data="awk '{n[\$1]++} END {for (i in n) print i,n[i]}' | sort -n"
 
-# Filter VCF files
+# Functions for VCF files
 alias vcf-header="awk '{ if (\$1 ~ /^#/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias vcf-entries="grep -v '^#'"
 alias vcf-pass="awk '\$1 ~ /^#/ || \$7 == "'"PASS"'"'"
 alias vcf-fail="awk '\$1 ~ /^#/ || \$7 != "'"PASS"'"'"
 alias vcf-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^#/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
+alias vcf-order="awk '{if(\$0 "'!'"~ /^#/ && \$1 "'!'"= a) {print \$1; a=\$1}}'"
 
-# Filter SAM files
+# Functions for SAM files
 alias sam-header="awk '{ if (\$1 ~ /^@/ || \$1 ~ /^\s*$/) { print \$0; } else { exit; } }'"
 alias sam-entries="grep -v '^@'"
 alias sam-count="awk 'BEGIN {i = 0} {if(!(\$1 ~ /^@/ || \$1 == "'""'")) {i += 1;}} END {print i}'"
