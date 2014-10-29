@@ -80,7 +80,9 @@ for $str (@ARGV) { $str eq "-" ? map {revcmp($_)} <STDIN> : revcmp($str); }'"'"
 function kmerkey {
   FW=$1
   RV=`echo $FW | revcmp`
-  if [[ "$FW" < "$RV" ]]; then echo "$FW"; else echo "$RV"; fi
+  lcFW=`echo $FW | tr '[:upper:]' '[:lower:]'`
+  lcRV=`echo $RV | tr '[:upper:]' '[:lower:]'`
+  if [[ "$lcFW" < "$lcRV" ]]; then echo "$FW"; else echo "$RV"; fi
 }
 
 # Add bash completion for git commands
