@@ -82,7 +82,7 @@ function kmerkey {
   RV=`echo $FW | revcmp`
   lcFW=`echo $FW | tr '[:upper:]' '[:lower:]'`
   lcRV=`echo $RV | tr '[:upper:]' '[:lower:]'`
-  if [[ "$lcFW" < "$lcRV" ]]; then echo "$FW"; else echo "$RV"; fi
+  if [[ "$lcFW" > "$lcRV" ]]; then echo "$RV"; else echo "$FW"; fi
 }
 
 # Add bash completion for git commands
